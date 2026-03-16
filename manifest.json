@@ -1,0 +1,17 @@
+{
+  "name": "Hymer Trip Planner",
+  "short_name": "HymerTrip",
+  "description": "Trip & Shot Planner für Hymer Reisemobil-Videoproduktionen",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF6F0",
+  "theme_color": "#FAF6F0",
+  "icons": [
+    {
+      "src": "/hymer-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
