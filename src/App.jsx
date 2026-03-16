@@ -17,9 +17,42 @@ const TRIPS = [
     km: '~1.100 km',
     route: 'Ostfildern → Gotthard/Brenner → Florenz → Pisa → Val d\'Orcia → Baccoleno',
     heroImg: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800&q=80',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/motorhomes/freisteller_motorcaravans/image-thumb__7924__wls-teaser-large/hy20_ext.webp',
     mustSpots: [
-      { name: 'Pisa & San Rossore', desc: 'Parco Regionale mit Pinienbäumen – perfekt für Waldlicht-Shots' },
-      { name: 'Baccoleno bei Asciano', desc: 'Zypressen-Allee – DER Hero-Shot der Toskana' },
+      {
+        name: 'Pisa & San Rossore',
+        desc: 'Parco Regionale mit Pinienbäumen – perfekt für Waldlicht-Shots',
+        mapsQuery: 'Parco Regionale Migliarino San Rossore Massaciuccoli Pisa',
+        locationTips: [
+          'Area Sosta Camper Pisa – offizieller WoMo-Stellplatz, 10 Min zu Fuß zum Turm',
+          'Parking Via Pietrasantina – großer Schotterparkplatz, easy für 7m+',
+          'Tenuta San Rossore Einfahrt – Waldweg-Kulisse, morgens menschenleer',
+          'Viale delle Cascine – Pinien-Allee, perfekt für Driving Shots mit Baumtunnel',
+          'Marina di Vecchiano – Strandparkplatz, Wohnmobil + Meer-Kombi',
+          'Camping Village Torre Pendente – direkter Turm-Blick, große Stellplätze',
+          'SP24 Richtung Lucca – Landstraße durch Olivenhaine, kaum Verkehr morgens',
+          'Calci bei Pisa – Bergdorf mit Kloster, Panorama-Parkplatz oben',
+          'Bocca d\'Arno – Flussmündung, ruhig, Naturkulisse für Sonnenuntergang',
+          'Certosa di Pisa Calci – monumentaler Kloster-Hintergrund, P für große Fahrzeuge',
+        ],
+      },
+      {
+        name: 'Baccoleno bei Asciano',
+        desc: 'Zypressen-Allee – DER Hero-Shot der Toskana',
+        mapsQuery: 'Baccoleno Asciano Toscana cipresso',
+        locationTips: [
+          'SP438 Abzweig Baccoleno – Schotterweg-Einfahrt, Platz zum Rangieren',
+          'Asciano Ortsparkplatz – sicher parken, 15 Min mit Drohne zum Spot',
+          'Strada Provinciale Lauretana – Hügelstraße, epische Kurven für Fahraufnahmen',
+          'Crete Senesi Aussichtspunkt SP451 – weite Hügellandschaft, kein Zaun',
+          'Monte Oliveto Maggiore Parkplatz – Kloster-Setting, große Stellfläche',
+          'San Giovanni d\'Asso – mittelalterliches Dorf, ruhiger Platz am Ortsrand',
+          'Bagno Vignoni Thermalplatz – heißes Quellbecken als Kulisse, P 200m',
+          'Strada Bianca bei Pienza – weiße Schotterstraße, Staubwolken-Shots',
+          'Podere Belvedere (Aussichtspunkt) – Instagram-Famous Haus mit Zypressen',
+          'SP146 zwischen Pienza und Montepulciano – Panoramastraße, Parkbuchten',
+        ],
+      },
     ],
     schedule: [
       { day: 1, date: '25.03.', title: 'Anreisetag', desc: 'Ostfildern → Toskana, Alpenpässe, erste Eindrücke' },
@@ -63,9 +96,42 @@ const TRIPS = [
     km: '~3.500+ km',
     route: 'Ostfildern → Calais → Eurotunnel → Wales → Fishguard → Rosslare → Wild Atlantic Way',
     heroImg: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=800&q=80',
+    vehicleImg: 'https://www.hymer.com/hymer/website-assets/1.produktseiten/gt-s/new_pdp_2025/ambient-exterior/farbe1_weiss_weiss/gt-s_weiss_weiss_auswahl.webp',
     mustSpots: [
-      { name: 'Eurotunnel Calais → Folkestone', desc: 'Autozug als Content-Piece – einzigartige Perspektiven' },
-      { name: 'Fähre Fishguard → Rosslare', desc: 'Ankunfts-Moment in Irland filmen – emotionaler Turning Point' },
+      {
+        name: 'Eurotunnel Calais → Folkestone',
+        desc: 'Autozug als Content-Piece – einzigartige Perspektiven',
+        mapsQuery: 'Eurotunnel Calais Terminal France',
+        locationTips: [
+          'Eurotunnel Terminal Calais – Überbreite WoMo-Spur, Ankunft 2h vorher für Shots',
+          'Plage de Calais Strand-Parkplatz – Vor-Abfahrt-Location, Blick auf Kreidefelsen',
+          'Cap Blanc-Nez Parkplatz – dramatische Klippen, Ärmelkanal-Panorama, Drohne!',
+          'Folkestone Harbour Arm – nach Ankunft UK, hafen-vibes, Fish & Chips',
+          'Shakespeare Beach Dover – Kreidefelsen-Kulisse direkt nach dem Tunnel',
+          'A20 Layby bei Folkestone – Rastplatz mit Blick auf Eurotunnel-Einfahrt',
+          'Cité Europe Parkhaus Calais – überdacht, sicher, vor der Überfahrt organisieren',
+          'Sangatte Opal-Küste – ruhiger Küsten-Spot, WoMo-freundlich',
+          'Welsh Coastal Road A487 – auf dem Weg nach Fishguard, Küstenstraße',
+          'Pembrokeshire Coast Layby – kurz vor Fishguard, letzte Wales-Shots',
+        ],
+      },
+      {
+        name: 'Fähre Fishguard → Rosslare',
+        desc: 'Ankunfts-Moment in Irland filmen – emotionaler Turning Point',
+        mapsQuery: 'Fishguard Harbour Stena Line Ferry Terminal',
+        locationTips: [
+          'Fishguard Harbour Terminal – 90 Min vorher da, Verlade-Prozess filmen',
+          'Fishguard Lower Town – malerischer Hafen, Vorbeifahrt-Shot',
+          'Fährdeck Außenbereich – Wind-in-Haaren-Shot, Küste verschwindet',
+          'Rosslare Europort Ankunft – erstes Irland-Feeling, grüne Hügel',
+          'Kilmore Quay – erster Stopp nach Ankunft, Fischerhafen, authentisch',
+          'Hook Head Lighthouse Parkplatz – ältester Leuchtturm Europas, WoMo passt',
+          'Dunmore East Village – buntes Fischerdorf, P am Hafen',
+          'Tramore Beach Car Park – breiter Strand, großer P, erster Irland-Beach-Shot',
+          'Waterford Viking Triangle – Stadtzentrum, Camper-P am Kai',
+          'Ring of Hook Scenic Route – ruhige Küstenstraße, perfekt für ersten Driving Shot',
+        ],
+      },
     ],
     schedule: [
       { day: 1, date: '06.05.', title: 'Anreise Calais', desc: 'Ostfildern → Calais, Eurotunnel-Vorbereitung' },
@@ -114,9 +180,42 @@ const TRIPS = [
     km: '~900 km',
     route: 'Ostfildern → Zürich → Furkapass → Grimselpass → Zermatt → Sustenpass → Ostfildern',
     heroImg: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/campervans/freisteller_campervans/image-thumb__162189__wls-teaser-large/gcs-crosstrail_steingrau_freisteller.webp',
     mustSpots: [
-      { name: 'Zermatt / Matterhorn', desc: 'DAS Schweiz-Motiv – ikonisch, muss im Kasten sein' },
-      { name: 'Alpenpässe Furka, Grimsel, Susten', desc: 'Haarnadelkurven für epische Driving Shots' },
+      {
+        name: 'Zermatt / Matterhorn',
+        desc: 'DAS Schweiz-Motiv – ikonisch, muss im Kasten sein',
+        mapsQuery: 'Zermatt Matterhorn Schweiz',
+        locationTips: [
+          'Täsch Terminal Parkplatz – Pflicht! Zermatt autofrei, WoMo bleibt hier, Zug 12 Min',
+          'Randa Aussichtspunkt – Matterhorn-Blick von unten, WoMo passt auf Seitenstraße',
+          'Stellplatz Täsch Mattertal – offizieller WoMo-Platz, Strom + Wasser',
+          'Zermatt Gornergrat Bahn Tal – Drohne von Täsch Richtung Matterhorn starten',
+          'St. Niklaus Vispertal – ruhiges Bergdorf, Brücke mit Mattertal-Blick',
+          'Camping Attermenzen Randa – Stellplatz mit direktem Matterhorn-View',
+          'Schlucht bei Randa – dramatische Felskulisse, Straße eng aber machbar',
+          'Visp Altstadt Parkplatz – Plan B bei schlechtem Wetter, Altstadt-Flair',
+          'Europabrücke Wanderweg Start – längste Hängebrücke der Welt, Drohnen-Spot',
+          'Grächen Panoramastraße – Höhenstraße mit Mattertal-Panorama, Parkbuchten',
+        ],
+      },
+      {
+        name: 'Alpenpässe Furka, Grimsel, Susten',
+        desc: 'Haarnadelkurven für epische Driving Shots',
+        mapsQuery: 'Furkapass Passhöhe Schweiz',
+        locationTips: [
+          'Furkapass Passhöhe 2.436m – großer Schotterplatz oben, Hotel Furkablick nebenan',
+          'Rhonegletscher Belvedere – Gletscher-Kulisse, P direkt an der Straße',
+          'James-Bond-Straße Furka (Goldfinger) – legendäre Serpentinen, Drohne Pflicht',
+          'Grimsel Passhöhe Stausee – türkiser Bergsee, WoMo-Parkplatz am See',
+          'Gelmerbahn Talstation – steilste Standseilbahn Europas, P vorhanden',
+          'Sustenpass Passhöhe 2.224m – Parkplatz mit 360° Bergpanorama',
+          'Steingletscher am Susten – Gletscher direkt an der Straße, Parkbucht',
+          'Göschenen Schöllenen-Schlucht – Teufelsbrücke, dramatische Schlucht',
+          'Andermatt Dorfplatz – hübsches Bergdorf, Dreh-Pause, Kaffee-Spot',
+          'Oberalppass bei Andermatt – Rhein-Quelle, weitere Serpentinen für Driving Shots',
+        ],
+      },
     ],
     schedule: [
       { day: 1, date: '28.05.', title: 'Anreise & Furkapass', desc: 'Ostfildern → Furkapass, erste Passfahrt' },
@@ -160,10 +259,59 @@ const TRIPS = [
     km: '~3.200 km',
     route: 'Ostfildern → Provence → Pyrenäen → Nordspanien → Portugal Küste → Algarve/Faro',
     heroImg: 'https://images.unsplash.com/photo-1499002238440-d264edd596ec?w=800&q=80',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/motorhomes/freisteller_motorcaravans/image-thumb__7917__wls-teaser-large/hy20_bml.webp',
     mustSpots: [
-      { name: 'Valensole / Lavendelfelder', desc: 'Lila Felder soweit das Auge reicht – Provence pur' },
-      { name: 'Baskenland & Kantabrien', desc: 'Nordspanien Küste – wild, grün, dramatisch' },
-      { name: 'Faro / Algarve', desc: 'Klippen, Strände, goldenes Licht – perfekter Abschluss' },
+      {
+        name: 'Valensole / Lavendelfelder',
+        desc: 'Lila Felder soweit das Auge reicht – Provence pur',
+        mapsQuery: 'Plateau de Valensole Lavendelfelder Provence',
+        locationTips: [
+          'D6 bei Valensole – Lavendelfeld-Straße, Parkbuchten direkt am Feld',
+          'Puimoisson Lavendelstraße – weniger touristisch als Valensole, riesige Felder',
+          'Aire de Camping-Cars Valensole – offizieller WoMo-Platz im Ort',
+          'Moustiers-Sainte-Marie – schönstes Dorf der Provence, P am Ortsrand für große Fahrzeuge',
+          'Lac de Sainte-Croix – türkiser See, Strandparkplatz, WoMo + Wasser-Kombi',
+          'Riez Altstadt – römische Säulen, ruhiger Stellplatz am Fluss',
+          'Route de Manosque D907 – Panoramastraße durch Lavendelfelder',
+          'Château de Sauvan bei Mane – Schloss-Kulisse, großer Vorplatz',
+          'Gorges du Verdon Aussichtspunkt – Europas Grand Canyon, WoMo-P oben',
+          'Allemagne-en-Provence Château – Schlossturm + Lavendelfeld-Kombi',
+        ],
+      },
+      {
+        name: 'Baskenland & Kantabrien',
+        desc: 'Nordspanien Küste – wild, grün, dramatisch',
+        mapsQuery: 'San Juan de Gaztelugatxe Baskenland Spanien',
+        locationTips: [
+          'San Juan de Gaztelugatxe Parkplatz – Game-of-Thrones-Insel, WoMo auf P2',
+          'Playa de Laga – Surfstrand, großer Schotterparkplatz, Campervan-Vibes',
+          'Mundaka Hafen – berühmte Linkswelle, kompakter Parkplatz am Kai',
+          'Getaria Hafen – Fischerdorf, Pintxos, Parkplatz am Hafen',
+          'Flysch-Küste Zumaia – dramatische Felsschichten, P am Strand',
+          'Cabo Machichaco Leuchtturm – Klippen-Panorama, Schotterweg fahrbar',
+          'Comillas Capricho de Gaudí – Gaudí-Villa, P 200m, Drohnen-Spot',
+          'Playa de las Catedrales (Galicien) – Kathedral-Felsen, Parkplatz oben',
+          'Santillana del Mar – mittelalterliches Dorf, WoMo-Platz am Ortsrand',
+          'Picos de Europa Fuente Dé – Seilbahn, dramatische Berge, großer P',
+        ],
+      },
+      {
+        name: 'Faro / Algarve',
+        desc: 'Klippen, Strände, goldenes Licht – perfekter Abschluss',
+        mapsQuery: 'Praia da Marinha Algarve Portugal',
+        locationTips: [
+          'Praia da Marinha Parkplatz – ikonische Klippen, großer Erdparkplatz oben',
+          'Ponta da Piedade Lagos – Felsformationen, WoMo-P 300m entfernt',
+          'Praia do Camilo – Treppen runter zum Strand, Parkplatz oben für WoMo',
+          'Cabo de São Vicente – westlichster Punkt Europas, großer P, Leuchtturm',
+          'Praia da Falésia Vilamoura – endlose Klippen, Parkfläche oben am Rand',
+          'Benagil Cave Parkplatz – berühmte Grotte, P am Klippenrand, Drohne muss',
+          'Tavira Altstadt – Parkplatz am Fluss, maurische Architektur als Kulisse',
+          'Ria Formosa Naturpark Faro – Lagunenlandschaft, WoMo-Stellplatz am Rand',
+          'Sagres Festung Parkplatz – dramatische Klippen, Surfer-Vibe, großer P',
+          'Silves Burgmauer – maurische Burg in rot, Parkplatz unten am Fluss',
+        ],
+      },
     ],
     schedule: [
       { day: 1, date: '02.06.', title: 'Anreise Provence', desc: 'Ostfildern → Provence, Lavendelfelder erkunden' },
@@ -222,6 +370,42 @@ const BASIC_SHOTS = [
 ];
 
 const CATEGORIES = ['Alle', 'Drohne', 'Gimbal', 'Interior', 'Detail'];
+
+/* ─────────────────────────────────────
+   PACKLISTE – Film Props & Deko
+───────────────────────────────────── */
+const PACK_CATEGORIES = ['Alle', 'Deko', 'Technik', 'Styling', 'Requisiten'];
+
+const PACKLIST_ITEMS = [
+  { id: 'p1', category: 'Deko', text: 'Dekodecke / Throw Blanket fürs Bett (beige/creme, texturiert)', emoji: '🛏️' },
+  { id: 'p2', category: 'Deko', text: 'Lichterkette warmweiß (USB, 3m) für Abend-Ambient-Shots', emoji: '✨' },
+  { id: 'p3', category: 'Deko', text: 'Frische Blumen / Eukalyptus-Zweige (vor Ort kaufen)', emoji: '🌿' },
+  { id: 'p4', category: 'Deko', text: 'Kerzen (LED-Stumpenkerzen, flackern realistisch)', emoji: '🕯️' },
+  { id: 'p5', category: 'Deko', text: 'Holz-Schneidebrett & Leinentuch für Food-Shots', emoji: '🪵' },
+  { id: 'p6', category: 'Requisiten', text: 'Landkarte der Region (gefaltet, Vintage-Optik)', emoji: '🗺️' },
+  { id: 'p7', category: 'Requisiten', text: 'Retro-Kamera (Analog / Fuji Instax) als B-Roll Prop', emoji: '📷' },
+  { id: 'p8', category: 'Requisiten', text: 'Reisetagebuch / Moleskin mit Stift (schreib-Szenen)', emoji: '📓' },
+  { id: 'p9', category: 'Requisiten', text: 'Fernglas (Landschafts-Entdecker-Shots)', emoji: '🔭' },
+  { id: 'p10', category: 'Requisiten', text: 'Emaille-Becher (2 Stk, für Kaffee- & Tee-Szenen)', emoji: '☕' },
+  { id: 'p11', category: 'Styling', text: 'Vanessa Outfit Set 1: Lässig-cozy (Oversize-Strick + Jeans)', emoji: '👗' },
+  { id: 'p12', category: 'Styling', text: 'Vanessa Outfit Set 2: Outdoor-Adventure (Regenjacke, Boots)', emoji: '🧥' },
+  { id: 'p13', category: 'Styling', text: 'Vanessa Outfit Set 3: Sommerlich-leicht (Kleid, Sandalen)', emoji: '👒' },
+  { id: 'p14', category: 'Styling', text: 'Strohhut / Bucket Hat für Sommer-Shots', emoji: '🎩' },
+  { id: 'p15', category: 'Styling', text: 'Sonnenbrille (2-3 Modelle, verschiedene Looks)', emoji: '🕶️' },
+  { id: 'p16', category: 'Technik', text: 'ND-Filter Set für Drohne & Kamera (Goldene-Stunde-Look)', emoji: '🔲' },
+  { id: 'p17', category: 'Technik', text: 'RGB-LED Panel klein (Akzentlicht für Interior bei Nacht)', emoji: '💡' },
+  { id: 'p18', category: 'Technik', text: 'Reflector / Bouncer 5-in-1 (Gold/Silber für Portraits)', emoji: '🪩' },
+  { id: 'p19', category: 'Technik', text: 'Prismen-Set (Regenbogen-Effekte, kreative Flares)', emoji: '🔮' },
+  { id: 'p20', category: 'Technik', text: 'Bluetooth-Speaker mini (Stimmungsmusik für Dreh-Energie)', emoji: '🔊' },
+  { id: 'p21', category: 'Deko', text: 'Kissen-Set (2-3 Stk, Boho-Look, für Sitzgruppe & Bett)', emoji: '🛋️' },
+  { id: 'p22', category: 'Requisiten', text: 'Weinflasche + 2 Gläser (Abendszenen, Genuss-Moments)', emoji: '🍷' },
+  { id: 'p23', category: 'Requisiten', text: 'Picknickdecke (für Outdoor-Szenen neben dem WoMo)', emoji: '🧺' },
+  { id: 'p24', category: 'Requisiten', text: 'Campingstuhl-Set (faltbar, mit Style – nicht Aldi)', emoji: '🪑' },
+  { id: 'p25', category: 'Deko', text: 'Trockenblumen-Bund (Pampasgras) für Vase im WoMo-Interior', emoji: '🌾' },
+  { id: 'p26', category: 'Requisiten', text: 'Frühstücks-Props: Croissants, Marmelade im Glas, Orangensaft', emoji: '🥐' },
+  { id: 'p27', category: 'Technik', text: 'Rauchbomben / Haze-Spray (für mystische Wald-/Morgen-Shots)', emoji: '💨' },
+  { id: 'p28', category: 'Styling', text: 'Tücher / Scarfs (verschiedene Farben, vielseitig einsetzbar)', emoji: '🧣' },
+];
 
 /* ─────────────────────────────────────
    WEATHER CODES → Labels & Icons
@@ -499,7 +683,7 @@ export default function App() {
 
   // State
   const [activeTrip, setActiveTrip] = useState(0);
-  const [activeTab, setActiveTab] = useState('overview'); // overview | shots | weather | ai
+  const [activeTab, setActiveTab] = useState('overview'); // overview | shots | weather | ai | packliste
   const [basicChecked, setBasicChecked] = useState(() => {
     try { return JSON.parse(localStorage.getItem('htp_basic') || '{}'); } catch { return {}; }
   });
@@ -510,6 +694,11 @@ export default function App() {
     try { return JSON.parse(localStorage.getItem('htp_custom') || '{}'); } catch { return {}; }
   });
   const [shotFilter, setShotFilter] = useState('Alle');
+  const [expandedSpot, setExpandedSpot] = useState(null); // 'tripId_spotIdx'
+  const [packlistChecked, setPacklistChecked] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('htp_packlist') || '{}'); } catch { return {}; }
+  });
+  const [packFilter, setPackFilter] = useState('Alle');
   const [weatherData, setWeatherData] = useState({});
   const [weatherSheet, setWeatherSheet] = useState(null); // { location, dayIdx }
   const [aiInput, setAiInput] = useState('');
@@ -528,6 +717,7 @@ export default function App() {
   useEffect(() => { localStorage.setItem('htp_creative', JSON.stringify(creativeChecked)); }, [creativeChecked]);
   useEffect(() => { localStorage.setItem('htp_custom', JSON.stringify(customShots)); }, [customShots]);
   useEffect(() => { localStorage.setItem('htp_images', JSON.stringify(uploadedImages)); }, [uploadedImages]);
+  useEffect(() => { localStorage.setItem('htp_packlist', JSON.stringify(packlistChecked)); }, [packlistChecked]);
 
   // Fetch weather
   useEffect(() => {
@@ -634,7 +824,17 @@ export default function App() {
     }));
   };
 
+  const togglePackItem = (itemId) => {
+    const key = `${trip.id}_${itemId}`;
+    setPacklistChecked(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
   // Computed
+  const filteredPack = packFilter === 'Alle'
+    ? PACKLIST_ITEMS
+    : PACKLIST_ITEMS.filter(p => p.category === packFilter);
+  const packDone = PACKLIST_ITEMS.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length;
+
   const filteredBasics = shotFilter === 'Alle'
     ? BASIC_SHOTS
     : BASIC_SHOTS.filter(s => s.category === shotFilter);
@@ -711,34 +911,60 @@ export default function App() {
         {/* ── OVERVIEW TAB ── */}
         {activeTab === 'overview' && (
           <div className="fade-up">
-            {/* Hero */}
+            {/* Hero + Vehicle Overlay */}
             <div style={{
-              borderRadius: 24, overflow: 'hidden',
-              marginTop: 20, position: 'relative',
-              aspectRatio: '16/10',
-              boxShadow: '0 8px 32px rgba(160,132,92,0.15)',
+              position: 'relative',
+              marginTop: 20,
+              marginBottom: trip.vehicleImg ? 40 : 0,
             }}>
-              <img
-                src={trip.heroImg}
-                alt={trip.destination}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
+              {/* Mood Image */}
               <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: '60px 20px 20px',
-                background: 'linear-gradient(transparent, rgba(61,52,37,0.8))',
+                borderRadius: 24, overflow: 'hidden',
+                position: 'relative',
+                aspectRatio: '16/10',
+                boxShadow: '0 8px 32px rgba(160,132,92,0.15)',
               }}>
-                <h2 style={{
-                  ...baseStyles.serif, color: C.white,
-                  fontSize: 28, fontWeight: 700,
-                  textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                <img
+                  src={trip.heroImg}
+                  alt={trip.destination}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
+                  padding: '60px 20px 20px',
+                  background: 'linear-gradient(transparent, rgba(61,52,37,0.8))',
                 }}>
-                  {trip.destination} {trip.country}
-                </h2>
-                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 14, marginTop: 4 }}>
-                  {trip.vehicle}
-                </p>
+                  <h2 style={{
+                    ...baseStyles.serif, color: C.white,
+                    fontSize: 28, fontWeight: 700,
+                    textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                  }}>
+                    {trip.destination} {trip.country}
+                  </h2>
+                  <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 14, marginTop: 4 }}>
+                    {trip.vehicle}
+                  </p>
+                </div>
               </div>
+
+              {/* Vehicle Image – right-aligned, overlapping hero downward */}
+              {trip.vehicleImg && (
+                <img
+                  src={trip.vehicleImg}
+                  alt={trip.vehicle}
+                  style={{
+                    position: 'absolute',
+                    right: -10,
+                    bottom: -45,
+                    height: 110,
+                    objectFit: 'contain',
+                    mixBlendMode: 'multiply',
+                    filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.2))',
+                    zIndex: 3,
+                    pointerEvents: 'none',
+                  }}
+                />
+              )}
             </div>
 
             {/* Info Chips */}
@@ -773,15 +999,93 @@ export default function App() {
 
             {/* Must-Spots */}
             <h3 style={baseStyles.sectionTitle}>Pflicht-Spots</h3>
-            {trip.mustSpots.map((spot, i) => (
-              <div key={i} style={{
-                ...baseStyles.card,
-                borderLeft: `3px solid ${C.accent}`,
-              }} className="slide-in" >
-                <p style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>📌 {spot.name}</p>
-                <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.5 }}>{spot.desc}</p>
-              </div>
-            ))}
+            {trip.mustSpots.map((spot, i) => {
+              const spotKey = `${trip.id}_${i}`;
+              const isExpanded = expandedSpot === spotKey;
+              return (
+                <div key={i} style={{
+                  ...baseStyles.card,
+                  borderLeft: `3px solid ${C.accent}`,
+                  padding: 0,
+                  overflow: 'hidden',
+                }} className="slide-in">
+                  <div
+                    onClick={() => setExpandedSpot(isExpanded ? null : spotKey)}
+                    style={{
+                      padding: '16px 20px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 10,
+                    }}
+                  >
+                    <div style={{ flex: 1 }}>
+                      <p style={{ fontSize: 15, fontWeight: 600, marginBottom: 4 }}>📌 {spot.name}</p>
+                      <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.5 }}>{spot.desc}</p>
+                    </div>
+                    <span style={{
+                      fontSize: 20, color: C.accent, fontWeight: 700,
+                      transition: 'transform 0.3s ease',
+                      transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)',
+                      flexShrink: 0,
+                      marginTop: 2,
+                    }}>
+                      »
+                    </span>
+                  </div>
+
+                  {isExpanded && (
+                    <div style={{
+                      padding: '0 20px 16px',
+                      animation: 'fadeUp 0.3s ease both',
+                    }}>
+                      {/* Google Maps Button */}
+                      <a
+                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(spot.mapsQuery)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: 'flex', alignItems: 'center', gap: 8,
+                          padding: '10px 16px', borderRadius: 12,
+                          background: `linear-gradient(135deg, #4285F4, #34A853)`,
+                          color: 'white', textDecoration: 'none',
+                          fontSize: 13, fontWeight: 600,
+                          marginBottom: 14,
+                          boxShadow: '0 2px 8px rgba(66,133,244,0.3)',
+                        }}
+                      >
+                        📍 In Google Maps öffnen
+                      </a>
+
+                      {/* Location Tips */}
+                      <p style={{
+                        fontSize: 11, fontWeight: 600, color: C.accent,
+                        textTransform: 'uppercase', letterSpacing: '0.08em',
+                        marginBottom: 10,
+                      }}>
+                        🚐 Top Spots für große Fahrzeuge
+                      </p>
+                      {spot.locationTips.map((tip, ti) => (
+                        <div key={ti} style={{
+                          display: 'flex', alignItems: 'flex-start', gap: 8,
+                          padding: '8px 0',
+                          borderBottom: ti < spot.locationTips.length - 1 ? `1px solid ${C.border}` : 'none',
+                        }}>
+                          <span style={{
+                            fontSize: 11, fontWeight: 700, color: C.accent,
+                            background: C.accentBg, borderRadius: 6,
+                            padding: '2px 6px', flexShrink: 0, marginTop: 1,
+                          }}>
+                            {ti + 1}
+                          </span>
+                          <p style={{ fontSize: 13, color: C.text, lineHeight: 1.5 }}>{tip}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
             {/* Tagesplan */}
             <h3 style={baseStyles.sectionTitle}>Tagesplan</h3>
@@ -1198,6 +1502,62 @@ export default function App() {
             )}
           </div>
         )}
+
+        {/* ── PACKLISTE TAB ── */}
+        {activeTab === 'packliste' && (
+          <div className="fade-up">
+            <h3 style={{ ...baseStyles.sectionTitle, marginTop: 20 }}>Packliste</h3>
+            <p style={{ fontSize: 13, color: C.textMuted, marginBottom: 20, lineHeight: 1.6 }}>
+              Film-Props, Deko & Styling für {trip.destination} mit dem {trip.vehicle}.
+            </p>
+
+            {/* Progress */}
+            <div style={baseStyles.card}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <p style={{ fontSize: 12, fontWeight: 600, color: C.textMuted, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  Eingepackt
+                </p>
+                <span style={{ fontSize: 22, fontWeight: 700, color: C.accent }}>
+                  {PACKLIST_ITEMS.length > 0 ? Math.round((packDone / PACKLIST_ITEMS.length) * 100) : 0}%
+                </span>
+              </div>
+              <ProgressBar done={packDone} total={PACKLIST_ITEMS.length} />
+            </div>
+
+            {/* Filter Pills */}
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12, marginTop: 16 }}>
+              {PACK_CATEGORIES.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setPackFilter(cat)}
+                  style={{
+                    ...baseStyles.pill,
+                    ...(packFilter === cat ? baseStyles.pillActive : {}),
+                    padding: '6px 14px',
+                    fontSize: 12,
+                  }}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Items */}
+            <div style={baseStyles.card}>
+              {filteredPack.map(item => (
+                <CheckItem
+                  key={item.id}
+                  checked={!!packlistChecked[`${trip.id}_${item.id}`]}
+                  text={`${item.emoji} ${item.text}`}
+                  onToggle={() => togglePackItem(item.id)}
+                />
+              ))}
+            </div>
+
+            {/* Spacing for bottom nav */}
+            <div style={{ height: 20 }} />
+          </div>
+        )}
       </div>
 
       {/* ── Weather Bottom Sheet ── */}
@@ -1262,6 +1622,7 @@ export default function App() {
         {[
           { id: 'overview', icon: '🏠', label: 'Übersicht' },
           { id: 'shots', icon: '🎬', label: 'Shots' },
+          { id: 'packliste', icon: '🎒', label: 'Packliste' },
           { id: 'weather', icon: '🌤️', label: 'Wetter' },
           { id: 'ai', icon: '✨', label: 'AI' },
         ].map(tab => (
@@ -1271,7 +1632,7 @@ export default function App() {
             style={{
               background: 'none', border: 'none', cursor: 'pointer',
               display: 'flex', flexDirection: 'column', alignItems: 'center',
-              gap: 3, padding: '6px 16px',
+              gap: 3, padding: '6px 10px',
               borderRadius: 14,
               transition: 'all 0.2s',
               opacity: activeTab === tab.id ? 1 : 0.5,
