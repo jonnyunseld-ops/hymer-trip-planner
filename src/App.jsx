@@ -665,6 +665,105 @@ const GLOBAL_CSS = `
    COMPONENTS
 ───────────────────────────────────── */
 
+/* Vehicle image with runtime white-background removal */
+function TransparentVehicle({ src, alt, style = {} }) {
+  const canvasRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    if (!src) return;
+    // Route through Netlify proxy to avoid CORS
+    const proxiedSrc = src.startsWith('https://www.hymer.com/')
+      ? src.replace('https://www.hymer.com/', '/proxy/hymer/')
+      : src;
+
+    const img = new Image();
+    // Only set crossOrigin if not same-origin (proxy handles same-origin)
+    if (!proxiedSrc.startsWith('/')) img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      // Draw at natural size first
+      const offscreen = document.createElement('canvas');
+      offscreen.width = img.naturalWidth;
+      offscreen.height = img.naturalHeight;
+      const octx = offscreen.getContext('2d');
+      octx.drawImage(img, 0, 0);
+
+      const imageData = octx.getImageData(0, 0, offscreen.width, offscreen.height);
+      const d = imageData.data;
+
+      // Remove white / near-white pixels
+      for (let i = 0; i < d.length; i += 4) {
+        const r = d[i], g = d[i + 1], b = d[i + 2];
+        // Pure white area → fully transparent
+        if (r > 245 && g > 245 && b > 245) {
+          d[i + 3] = 0;
+        }
+        // Near-white → fade (smooth anti-alias edge)
+        else if (r > 215 && g > 215 && b > 215) {
+          const luminance = (r + g + b) / 3;
+          const alpha = Math.max(0, Math.min(255, (255 - luminance) * 5));
+          d[i + 3] = Math.min(d[i + 3], alpha);
+        }
+        // Very light grey near edges → partial transparency
+        else if (r > 200 && g > 200 && b > 200) {
+          const luminance = (r + g + b) / 3;
+          const alpha = Math.max(0, Math.min(255, (255 - luminance) * 3));
+          d[i + 3] = Math.min(d[i + 3], Math.max(alpha, 120));
+        }
+      }
+
+      octx.putImageData(imageData, 0, 0);
+
+      // Crop to content bounds
+      let minX = offscreen.width, minY = offscreen.height, maxX = 0, maxY = 0;
+      for (let y = 0; y < offscreen.height; y++) {
+        for (let x = 0; x < offscreen.width; x++) {
+          const idx = (y * offscreen.width + x) * 4;
+          if (d[idx + 3] > 10) {
+            if (x < minX) minX = x;
+            if (y < minY) minY = y;
+            if (x > maxX) maxX = x;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+
+      const pad = 2;
+      minX = Math.max(0, minX - pad);
+      minY = Math.max(0, minY - pad);
+      maxX = Math.min(offscreen.width - 1, maxX + pad);
+      maxY = Math.min(offscreen.height - 1, maxY + pad);
+
+      const cw = maxX - minX + 1;
+      const ch = maxY - minY + 1;
+
+      canvas.width = cw;
+      canvas.height = ch;
+      const ctx = canvas.getContext('2d');
+      ctx.putImageData(octx.getImageData(minX, minY, cw, ch), 0, 0);
+      setLoaded(true);
+    };
+    img.onerror = () => setLoaded(false);
+    img.src = proxiedSrc;
+  }, [src]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      alt={alt}
+      style={{
+        ...style,
+        opacity: loaded ? 1 : 0,
+        transition: 'opacity 0.4s ease',
+        imageRendering: 'auto',
+      }}
+    />
+  );
+}
+
 function ProgressBar({ done, total }) {
   const pct = total === 0 ? 0 : Math.round((done / total) * 100);
   return (
@@ -1087,9 +1186,9 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Vehicle Image – right-aligned, overlapping hero downward */}
+              {/* Vehicle Image – right-aligned, overlapping hero downward, freigestellt */}
               {trip.vehicleImg && (
-                <img
+                <TransparentVehicle
                   src={trip.vehicleImg}
                   alt={trip.vehicle}
                   style={{
@@ -1097,9 +1196,7 @@ export default function App() {
                     right: -10,
                     bottom: -45,
                     height: 110,
-                    objectFit: 'contain',
-                    mixBlendMode: 'multiply',
-                    filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.2))',
+                    filter: 'drop-shadow(0 6px 20px rgba(0,0,0,0.25))',
                     zIndex: 3,
                     pointerEvents: 'none',
                   }}
@@ -1268,13 +1365,11 @@ export default function App() {
                 }}
               >
                 {trip.vehicleImg && (
-                  <img
+                  <TransparentVehicle
                     src={trip.vehicleImg}
                     alt={trip.vehicle}
                     style={{
                       height: 48,
-                      objectFit: 'contain',
-                      mixBlendMode: 'multiply',
                       flexShrink: 0,
                     }}
                   />
