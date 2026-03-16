@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { subscribeToData, saveData, isConfigured as firebaseReady } from './firebase';
 
 /* ─────────────────────────────────────
    TRIP DATA
@@ -81,6 +82,32 @@ const TRIPS = [
       'Split-Screen-Moment: Vanessa kocht drinnen, Landschaft draußen',
       'Golden Hour Portrait: Vanessa am Wohnmobil-Fenster, warmes Seitenlicht',
       'Slow Pan über italienische Dorfsilhouette bei Dämmerung',
+    ],
+    vehicleSpecs: {
+      grundriss: 'Teilintegriert',
+      laenge: '659 cm',
+      breite: '222 cm',
+      hoehe: '279 cm',
+      gewicht: '3.500 kg zGG',
+      chassis: 'Fiat Ducato',
+      schlafplaetze: '2–3',
+      besonderheit: 'PUAL-Leichtbau, kompakt & wendig',
+      sitzplaetze: '4',
+      kueche: 'Dreiflammkocher, Kühlschrank 137L',
+      bad: 'Kompaktbad mit Dusche',
+      heizung: 'Truma Combi 6',
+      tankWasser: '120 L Frischwasser',
+      bett: 'Hubbett + Heckbett (197×140 cm)',
+    },
+    dekoItems: [
+      { id: 'dt1', text: 'Olivenöl-Flasche (hübsches Etikett) für Küchen-Shots', emoji: '🫒' },
+      { id: 'dt2', text: 'Terrakotta-Schale für Obst-Arrangement', emoji: '🍑' },
+      { id: 'dt3', text: 'Strohgeflecht-Untersetzer (3er Set, verschiedene Größen)', emoji: '🌾' },
+      { id: 'dt4', text: 'Leinentischdecke creme/natur für Tisch-Szenen', emoji: '🧵' },
+      { id: 'dt5', text: 'Kleine Espresso-Kanne (Bialetti Moka) als Hero-Prop', emoji: '☕' },
+      { id: 'dt6', text: 'Sonnenblumen-Strauß (vor Ort kaufen) für Vase', emoji: '🌻' },
+      { id: 'dt7', text: 'Rustikales Brotkörbchen + echtes Ciabatta', emoji: '🍞' },
+      { id: 'dt8', text: 'Chianti-Flasche im Bastkorb als Deko-Element', emoji: '🍷' },
     ],
   },
   {
@@ -166,6 +193,32 @@ const TRIPS = [
       'Closeup: Hand dreht Radio im GT-S an, irische Musik ertönt',
       'Top-Down Drohne: GT-S auf einspuriger Brücke, Fluss darunter',
     ],
+    vehicleSpecs: {
+      grundriss: 'Campervan / Van',
+      laenge: '709 cm',
+      breite: '~206 cm',
+      hoehe: '~285 cm',
+      gewicht: '3.500 kg zGG',
+      chassis: 'Mercedes-Benz Sprinter',
+      schlafplaetze: '2–5',
+      besonderheit: 'Stufenloser Boden, 2,04 m Stehhöhe, Sprinter-Power',
+      sitzplaetze: '4',
+      kueche: 'Zweiflamm-Gaskocher, Kompressor-Kühlschrank',
+      bad: 'Nasszelle mit Schwenkwand-Dusche',
+      heizung: 'Truma Combi 4',
+      tankWasser: '100 L Frischwasser',
+      bett: 'Längsbetten hinten + Aufstelldach optional',
+    },
+    dekoItems: [
+      { id: 'di1', text: 'Wolldecke / Tartan-Plaid (grün/braun, irisch)', emoji: '🧶' },
+      { id: 'di2', text: 'Tweed-Kissen (2 Stk, Cottage-Vibes)', emoji: '🛋️' },
+      { id: 'di3', text: 'Keramik-Teekanne + Steingut-Becher für Tee-Szenen', emoji: '🫖' },
+      { id: 'di4', text: 'Alte Bücher-Stapel (irische Autoren, als Requisite)', emoji: '📚' },
+      { id: 'di5', text: 'Gummistiefel (Hunter-Style) für Outdoor-Shots', emoji: '🥾' },
+      { id: 'di6', text: 'Laternen-Windlicht (Metall, vintage) für Abend-Ambient', emoji: '🪔' },
+      { id: 'di7', text: 'Regenschirm (transparent oder klassisch) als Stil-Element', emoji: '☂️' },
+      { id: 'di8', text: 'Whiskey-Gläser + Holz-Tablett für Pub-Style-Interior', emoji: '🥃' },
+    ],
   },
   {
     id: 'schweiz',
@@ -244,6 +297,32 @@ const TRIPS = [
       'Macro: Edelweiß am Wegesrand, Rack-Focus auf Grand Canyon dahinter',
       'Vanessa & John High-Five vor Matterhorn, Zeitlupe, Euphorie',
       'Spiegelung: Grand Canyon in Bergsee, perfekte Symmetrie',
+    ],
+    vehicleSpecs: {
+      grundriss: 'Kastenwagen / Offroad-Van',
+      laenge: '697 cm',
+      breite: '206 cm',
+      hoehe: '290 cm',
+      gewicht: '4.100 kg zGG',
+      chassis: 'Mercedes-Benz Sprinter 4x4',
+      schlafplaetze: '2–4',
+      besonderheit: 'Allrad, Offroad-Fahrwerk, höhergelegt, Unterfahrschutz',
+      sitzplaetze: '4',
+      kueche: 'Zweiflamm-Gaskocher, 90L Kompressor-Kühlschrank',
+      bad: 'Nasszelle mit Schwenkwand',
+      heizung: 'Truma Combi 6',
+      tankWasser: '110 L Frischwasser',
+      bett: 'Querbetten hinten (2×) + optionales Aufstelldach',
+    },
+    dekoItems: [
+      { id: 'ds1', text: 'Kuhglocke (klein, dekorativ) als Schweiz-Prop', emoji: '🔔' },
+      { id: 'ds2', text: 'Schweizer Taschenmesser (Victorinox) als Detail-Shot', emoji: '🔪' },
+      { id: 'ds3', text: 'Thermosflasche (Edelstahl, matt) für Berg-Shots', emoji: '🫗' },
+      { id: 'ds4', text: 'Wanderkarte (gefaltet, Schweizer Alpen) als Prop', emoji: '🗺️' },
+      { id: 'ds5', text: 'Käse-Board (Mini-Fondue-Set) für Alpen-Food-Shots', emoji: '🧀' },
+      { id: 'ds6', text: 'Wollmütze + Schal (rot/weiß) für Bergszenen', emoji: '🧣' },
+      { id: 'ds7', text: 'Karabiner + Seil (deko) für Adventure-Vibes', emoji: '🧗' },
+      { id: 'ds8', text: 'Holz-Schnitzfigur (Edelweiß/Alphorn) als Shelf-Deko', emoji: '🪵' },
     ],
   },
   {
@@ -344,6 +423,32 @@ const TRIPS = [
       'Letzter Shot: Vanessa winkt in Kamera, Faro-Strand, B-ML I 880 im BG, Wrap!',
       'Drohne Final: B-ML I 880 fährt in Algarve-Sonnenuntergang, Pull-Back',
     ],
+    vehicleSpecs: {
+      grundriss: 'Integriert / Liner-Klasse',
+      laenge: '789 cm',
+      breite: '235 cm',
+      hoehe: '298 cm',
+      gewicht: '4.430 kg zGG',
+      chassis: 'Mercedes-Benz Sprinter (Integriert)',
+      schlafplaetze: '4–5',
+      besonderheit: 'Premium-Integrierter, Hymer Connect App, riesiger Wohnraum',
+      sitzplaetze: '4',
+      kueche: 'Dreiflamm-Gaskocher, 142L Kühlschrank, viel Arbeitsfläche',
+      bad: 'Separates Raumbad mit Dusche, WC, Waschbecken',
+      heizung: 'Truma Combi 6 E',
+      tankWasser: '150 L Frischwasser',
+      bett: 'Hubbett vorne + Queensbett hinten (200×150 cm)',
+    },
+    dekoItems: [
+      { id: 'dp1', text: 'Lavendel-Bündel (getrocknet + frisch vor Ort) für Provence-Vibes', emoji: '💜' },
+      { id: 'dp2', text: 'Provenzalische Keramik-Schale (blau/gelb bemalt)', emoji: '🫕' },
+      { id: 'dp3', text: 'Baguette + Käse-Platte Requisiten für French-Lifestyle', emoji: '🥖' },
+      { id: 'dp4', text: 'Strohhut (Provence-Style, breite Krempe) für Vanessa', emoji: '👒' },
+      { id: 'dp5', text: 'Pastéis-de-Nata-Form (Kupfer, dekorativ) für Portugal', emoji: '🍮' },
+      { id: 'dp6', text: 'Azulejo-Fliese (einzeln, als Untersetzer/Prop) für Portugal-Shots', emoji: '🔷' },
+      { id: 'dp7', text: 'Fächer (spanisch, bunt) für Spanien-Szenen', emoji: '🪭' },
+      { id: 'dp8', text: 'Sangria-Karaffe (Glas) + bunte Obstdeko für Abend-Szenen', emoji: '🍹' },
+    ],
   },
 ];
 
@@ -372,39 +477,43 @@ const BASIC_SHOTS = [
 const CATEGORIES = ['Alle', 'Drohne', 'Gimbal', 'Interior', 'Detail'];
 
 /* ─────────────────────────────────────
-   PACKLISTE – Film Props & Deko
+   PACKLISTE – Kamera Essentials (universal)
 ───────────────────────────────────── */
-const PACK_CATEGORIES = ['Alle', 'Deko', 'Technik', 'Styling', 'Requisiten'];
+const KAMERA_ESSENTIALS = [
+  { id: 'ke1', text: 'ND-Filter Set für Drohne & Kamera (Goldene-Stunde-Look)', emoji: '🔲' },
+  { id: 'ke2', text: 'RGB-LED Panel klein (Akzentlicht für Interior bei Nacht)', emoji: '💡' },
+  { id: 'ke3', text: 'Reflector / Bouncer 5-in-1 (Gold/Silber für Portraits)', emoji: '🪩' },
+  { id: 'ke4', text: 'Prismen-Set (Regenbogen-Effekte, kreative Flares)', emoji: '🔮' },
+  { id: 'ke5', text: 'Bluetooth-Speaker mini (Stimmungsmusik für Dreh-Energie)', emoji: '🔊' },
+  { id: 'ke6', text: 'Rauchbomben / Haze-Spray (für mystische Wald-/Morgen-Shots)', emoji: '💨' },
+  { id: 'ke7', text: 'Stativ (leicht, Reise) + Kugelkopf', emoji: '📐' },
+  { id: 'ke8', text: 'Ersatzakkus (Kamera + Drohne) + Ladegerät', emoji: '🔋' },
+  { id: 'ke9', text: 'Speicherkarten (3× 128GB) + Kartenleser', emoji: '💾' },
+  { id: 'ke10', text: 'Mikrofon (Rode Wireless Go) für O-Töne & Vlogs', emoji: '🎙️' },
+  { id: 'ke11', text: 'Gimbal (DJI RS / Zhiyun) aufgeladen + kalibriert', emoji: '🎥' },
+  { id: 'ke12', text: 'Drohne (Akkus, Propeller, Fernbedienung, ND-Filter)', emoji: '🚁' },
+  { id: 'ke13', text: 'Lens Cleaning Kit (Tücher, Blasebalg, Stift)', emoji: '🧹' },
+  { id: 'ke14', text: 'GoPro / Action Cam + Halterungen (Saugnapf, Chest)', emoji: '📹' },
+];
 
-const PACKLIST_ITEMS = [
-  { id: 'p1', category: 'Deko', text: 'Dekodecke / Throw Blanket fürs Bett (beige/creme, texturiert)', emoji: '🛏️' },
-  { id: 'p2', category: 'Deko', text: 'Lichterkette warmweiß (USB, 3m) für Abend-Ambient-Shots', emoji: '✨' },
-  { id: 'p3', category: 'Deko', text: 'Frische Blumen / Eukalyptus-Zweige (vor Ort kaufen)', emoji: '🌿' },
-  { id: 'p4', category: 'Deko', text: 'Kerzen (LED-Stumpenkerzen, flackern realistisch)', emoji: '🕯️' },
-  { id: 'p5', category: 'Deko', text: 'Holz-Schneidebrett & Leinentuch für Food-Shots', emoji: '🪵' },
-  { id: 'p6', category: 'Requisiten', text: 'Landkarte der Region (gefaltet, Vintage-Optik)', emoji: '🗺️' },
-  { id: 'p7', category: 'Requisiten', text: 'Retro-Kamera (Analog / Fuji Instax) als B-Roll Prop', emoji: '📷' },
-  { id: 'p8', category: 'Requisiten', text: 'Reisetagebuch / Moleskin mit Stift (schreib-Szenen)', emoji: '📓' },
-  { id: 'p9', category: 'Requisiten', text: 'Fernglas (Landschafts-Entdecker-Shots)', emoji: '🔭' },
-  { id: 'p10', category: 'Requisiten', text: 'Emaille-Becher (2 Stk, für Kaffee- & Tee-Szenen)', emoji: '☕' },
-  { id: 'p11', category: 'Styling', text: 'Vanessa Outfit Set 1: Lässig-cozy (Oversize-Strick + Jeans)', emoji: '👗' },
-  { id: 'p12', category: 'Styling', text: 'Vanessa Outfit Set 2: Outdoor-Adventure (Regenjacke, Boots)', emoji: '🧥' },
-  { id: 'p13', category: 'Styling', text: 'Vanessa Outfit Set 3: Sommerlich-leicht (Kleid, Sandalen)', emoji: '👒' },
-  { id: 'p14', category: 'Styling', text: 'Strohhut / Bucket Hat für Sommer-Shots', emoji: '🎩' },
-  { id: 'p15', category: 'Styling', text: 'Sonnenbrille (2-3 Modelle, verschiedene Looks)', emoji: '🕶️' },
-  { id: 'p16', category: 'Technik', text: 'ND-Filter Set für Drohne & Kamera (Goldene-Stunde-Look)', emoji: '🔲' },
-  { id: 'p17', category: 'Technik', text: 'RGB-LED Panel klein (Akzentlicht für Interior bei Nacht)', emoji: '💡' },
-  { id: 'p18', category: 'Technik', text: 'Reflector / Bouncer 5-in-1 (Gold/Silber für Portraits)', emoji: '🪩' },
-  { id: 'p19', category: 'Technik', text: 'Prismen-Set (Regenbogen-Effekte, kreative Flares)', emoji: '🔮' },
-  { id: 'p20', category: 'Technik', text: 'Bluetooth-Speaker mini (Stimmungsmusik für Dreh-Energie)', emoji: '🔊' },
-  { id: 'p21', category: 'Deko', text: 'Kissen-Set (2-3 Stk, Boho-Look, für Sitzgruppe & Bett)', emoji: '🛋️' },
-  { id: 'p22', category: 'Requisiten', text: 'Weinflasche + 2 Gläser (Abendszenen, Genuss-Moments)', emoji: '🍷' },
-  { id: 'p23', category: 'Requisiten', text: 'Picknickdecke (für Outdoor-Szenen neben dem WoMo)', emoji: '🧺' },
-  { id: 'p24', category: 'Requisiten', text: 'Campingstuhl-Set (faltbar, mit Style – nicht Aldi)', emoji: '🪑' },
-  { id: 'p25', category: 'Deko', text: 'Trockenblumen-Bund (Pampasgras) für Vase im WoMo-Interior', emoji: '🌾' },
-  { id: 'p26', category: 'Requisiten', text: 'Frühstücks-Props: Croissants, Marmelade im Glas, Orangensaft', emoji: '🥐' },
-  { id: 'p27', category: 'Technik', text: 'Rauchbomben / Haze-Spray (für mystische Wald-/Morgen-Shots)', emoji: '💨' },
-  { id: 'p28', category: 'Styling', text: 'Tücher / Scarfs (verschiedene Farben, vielseitig einsetzbar)', emoji: '🧣' },
+/* Universal Props & Styling (same for every trip) */
+const UNIVERSAL_ITEMS = [
+  { id: 'u1', text: 'Dekodecke / Throw Blanket fürs Bett (beige/creme, texturiert)', emoji: '🛏️' },
+  { id: 'u2', text: 'Lichterkette warmweiß (USB, 3m) für Abend-Ambient-Shots', emoji: '✨' },
+  { id: 'u3', text: 'Kerzen (LED-Stumpenkerzen, flackern realistisch)', emoji: '🕯️' },
+  { id: 'u4', text: 'Kissen-Set (2-3 Stk, Boho-Look, für Sitzgruppe & Bett)', emoji: '🛋️' },
+  { id: 'u5', text: 'Trockenblumen-Bund (Pampasgras) für Vase im WoMo-Interior', emoji: '🌾' },
+  { id: 'u6', text: 'Emaille-Becher (2 Stk, für Kaffee- & Tee-Szenen)', emoji: '☕' },
+  { id: 'u7', text: 'Picknickdecke (für Outdoor-Szenen neben dem WoMo)', emoji: '🧺' },
+  { id: 'u8', text: 'Campingstuhl-Set (faltbar, mit Style – nicht Aldi)', emoji: '🪑' },
+  { id: 'u9', text: 'Retro-Kamera (Analog / Fuji Instax) als B-Roll Prop', emoji: '📷' },
+  { id: 'u10', text: 'Reisetagebuch / Moleskin mit Stift (schreib-Szenen)', emoji: '📓' },
+  { id: 'u11', text: 'Vanessa Outfit Set 1: Lässig-cozy (Oversize-Strick + Jeans)', emoji: '👗' },
+  { id: 'u12', text: 'Vanessa Outfit Set 2: Outdoor-Adventure (Regenjacke, Boots)', emoji: '🧥' },
+  { id: 'u13', text: 'Vanessa Outfit Set 3: Sommerlich-leicht (Kleid, Sandalen)', emoji: '👒' },
+  { id: 'u14', text: 'Sonnenbrille (2-3 Modelle, verschiedene Looks)', emoji: '🕶️' },
+  { id: 'u15', text: 'Weinflasche + 2 Gläser (Abendszenen, Genuss-Moments)', emoji: '🍷' },
+  { id: 'u16', text: 'Holz-Schneidebrett & Leinentuch für Food-Shots', emoji: '🪵' },
 ];
 
 /* ─────────────────────────────────────
@@ -681,43 +790,75 @@ export default function App() {
     return () => style.remove();
   }, []);
 
+  // Helper: read from localStorage safely
+  const lsGet = (key, fallback = '{}') => {
+    try { return JSON.parse(localStorage.getItem(key) || fallback); } catch { return JSON.parse(fallback); }
+  };
+
   // State
   const [activeTrip, setActiveTrip] = useState(0);
-  const [activeTab, setActiveTab] = useState('overview'); // overview | shots | weather | ai | packliste
-  const [basicChecked, setBasicChecked] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('htp_basic') || '{}'); } catch { return {}; }
-  });
-  const [creativeChecked, setCreativeChecked] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('htp_creative') || '{}'); } catch { return {}; }
-  });
-  const [customShots, setCustomShots] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('htp_custom') || '{}'); } catch { return {}; }
-  });
+  const [activeTab, setActiveTab] = useState('overview');
+  const [basicChecked, setBasicChecked] = useState(() => lsGet('htp_basic'));
+  const [creativeChecked, setCreativeChecked] = useState(() => lsGet('htp_creative'));
+  const [customShots, setCustomShots] = useState(() => lsGet('htp_custom'));
   const [shotFilter, setShotFilter] = useState('Alle');
-  const [expandedSpot, setExpandedSpot] = useState(null); // 'tripId_spotIdx'
-  const [packlistChecked, setPacklistChecked] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('htp_packlist') || '{}'); } catch { return {}; }
-  });
+  const [expandedSpot, setExpandedSpot] = useState(null);
+  const [packlistChecked, setPacklistChecked] = useState(() => lsGet('htp_packlist'));
   const [packFilter, setPackFilter] = useState('Alle');
   const [weatherData, setWeatherData] = useState({});
-  const [weatherSheet, setWeatherSheet] = useState(null); // { location, dayIdx }
+  const [weatherSheet, setWeatherSheet] = useState(null);
   const [aiInput, setAiInput] = useState('');
   const [aiSuggestions, setAiSuggestions] = useState([]);
   const [aiSelected, setAiSelected] = useState({});
   const [aiLoading, setAiLoading] = useState(false);
-  const [uploadedImages, setUploadedImages] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('htp_images') || '{}'); } catch { return {}; }
-  });
+  const [uploadedImages, setUploadedImages] = useState(() => lsGet('htp_images'));
+  const [expandedVehicle, setExpandedVehicle] = useState(false);
   const fileInputRef = useRef(null);
+  const skipFirebaseUpdate = useRef({});
 
   const trip = TRIPS[activeTrip];
 
-  // Persist state
-  useEffect(() => { localStorage.setItem('htp_basic', JSON.stringify(basicChecked)); }, [basicChecked]);
-  useEffect(() => { localStorage.setItem('htp_creative', JSON.stringify(creativeChecked)); }, [creativeChecked]);
-  useEffect(() => { localStorage.setItem('htp_custom', JSON.stringify(customShots)); }, [customShots]);
-  useEffect(() => { localStorage.setItem('htp_images', JSON.stringify(uploadedImages)); }, [uploadedImages]);
-  useEffect(() => { localStorage.setItem('htp_packlist', JSON.stringify(packlistChecked)); }, [packlistChecked]);
+  // ─── Firebase Realtime Sync ───
+  // Subscribe to Firebase and sync data bidirectionally
+  useEffect(() => {
+    if (!firebaseReady) return;
+    const unsubs = [];
+    const fields = [
+      { path: 'basicChecked', setter: setBasicChecked, ref: 'basic' },
+      { path: 'creativeChecked', setter: setCreativeChecked, ref: 'creative' },
+      { path: 'customShots', setter: setCustomShots, ref: 'custom' },
+      { path: 'packlistChecked', setter: setPacklistChecked, ref: 'packlist' },
+      { path: 'uploadedImages', setter: setUploadedImages, ref: 'images' },
+    ];
+    fields.forEach(({ path, setter, ref: refKey }) => {
+      const unsub = subscribeToData(path, (val) => {
+        if (val !== null && val !== undefined) {
+          skipFirebaseUpdate.current[refKey] = true;
+          setter(val);
+        }
+      });
+      unsubs.push(unsub);
+    });
+    return () => unsubs.forEach(u => typeof u === 'function' && u());
+  }, []);
+
+  // Persist to localStorage + Firebase
+  const persist = useCallback((lsKey, fbPath, data, refKey) => {
+    localStorage.setItem(lsKey, JSON.stringify(data));
+    if (firebaseReady) {
+      if (skipFirebaseUpdate.current[refKey]) {
+        skipFirebaseUpdate.current[refKey] = false;
+        return;
+      }
+      saveData(fbPath, data);
+    }
+  }, []);
+
+  useEffect(() => { persist('htp_basic', 'basicChecked', basicChecked, 'basic'); }, [basicChecked]);
+  useEffect(() => { persist('htp_creative', 'creativeChecked', creativeChecked, 'creative'); }, [creativeChecked]);
+  useEffect(() => { persist('htp_custom', 'customShots', customShots, 'custom'); }, [customShots]);
+  useEffect(() => { persist('htp_images', 'uploadedImages', uploadedImages, 'images'); }, [uploadedImages]);
+  useEffect(() => { persist('htp_packlist', 'packlistChecked', packlistChecked, 'packlist'); }, [packlistChecked]);
 
   // Fetch weather
   useEffect(() => {
@@ -829,11 +970,10 @@ export default function App() {
     setPacklistChecked(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-  // Computed
-  const filteredPack = packFilter === 'Alle'
-    ? PACKLIST_ITEMS
-    : PACKLIST_ITEMS.filter(p => p.category === packFilter);
-  const packDone = PACKLIST_ITEMS.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length;
+  // Computed – Packliste
+  const tripDekoItems = trip.dekoItems || [];
+  const allPackItems = [...KAMERA_ESSENTIALS, ...UNIVERSAL_ITEMS, ...tripDekoItems];
+  const packDone = allPackItems.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length;
 
   const filteredBasics = shotFilter === 'Alle'
     ? BASIC_SHOTS
@@ -1108,6 +1248,123 @@ export default function App() {
                 <p style={{ fontSize: 13, color: C.textMuted, lineHeight: 1.5, marginTop: 10 }}>{day.desc}</p>
               </div>
             ))}
+
+            {/* ── Fahrzeug-Kachel ── */}
+            <h3 style={baseStyles.sectionTitle}>Fahrzeug</h3>
+            <div style={{
+              ...baseStyles.card,
+              padding: 0,
+              overflow: 'hidden',
+              borderLeft: `3px solid ${C.accent}`,
+            }}>
+              <div
+                onClick={() => setExpandedVehicle(prev => !prev)}
+                style={{
+                  padding: '16px 20px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 14,
+                }}
+              >
+                {trip.vehicleImg && (
+                  <img
+                    src={trip.vehicleImg}
+                    alt={trip.vehicle}
+                    style={{
+                      height: 48,
+                      objectFit: 'contain',
+                      mixBlendMode: 'multiply',
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontSize: 15, fontWeight: 600 }}>{trip.vehicle}</p>
+                  <p style={{ fontSize: 12, color: C.textMuted }}>{trip.vehicleType}</p>
+                </div>
+                <span style={{
+                  fontSize: 20, color: C.accent, fontWeight: 700,
+                  transition: 'transform 0.3s ease',
+                  transform: expandedVehicle ? 'rotate(90deg)' : 'rotate(0deg)',
+                  flexShrink: 0,
+                }}>
+                  »
+                </span>
+              </div>
+
+              {expandedVehicle && trip.vehicleSpecs && (
+                <div style={{
+                  padding: '0 20px 20px',
+                  animation: 'fadeUp 0.3s ease both',
+                }}>
+                  <p style={{
+                    fontSize: 11, fontWeight: 600, color: C.accent,
+                    textTransform: 'uppercase', letterSpacing: '0.08em',
+                    marginBottom: 14,
+                  }}>
+                    📋 Fahrzeug-Specs für "Our Next Daily"
+                  </p>
+
+                  {[
+                    { label: 'Grundriss', value: trip.vehicleSpecs.grundriss, icon: '🏗️' },
+                    { label: 'Länge', value: trip.vehicleSpecs.laenge, icon: '📏' },
+                    { label: 'Breite', value: trip.vehicleSpecs.breite, icon: '↔️' },
+                    { label: 'Höhe', value: trip.vehicleSpecs.hoehe, icon: '↕️' },
+                    { label: 'Gewicht (zGG)', value: trip.vehicleSpecs.gewicht, icon: '⚖️' },
+                    { label: 'Chassis', value: trip.vehicleSpecs.chassis, icon: '🚛' },
+                    { label: 'Schlafplätze', value: trip.vehicleSpecs.schlafplaetze, icon: '🛏️' },
+                    { label: 'Sitzplätze', value: trip.vehicleSpecs.sitzplaetze, icon: '💺' },
+                    { label: 'Küche', value: trip.vehicleSpecs.kueche, icon: '🍳' },
+                    { label: 'Bad', value: trip.vehicleSpecs.bad, icon: '🚿' },
+                    { label: 'Heizung', value: trip.vehicleSpecs.heizung, icon: '🔥' },
+                    { label: 'Frischwasser', value: trip.vehicleSpecs.tankWasser, icon: '💧' },
+                    { label: 'Bett', value: trip.vehicleSpecs.bett, icon: '🛌' },
+                    { label: 'Besonderheit', value: trip.vehicleSpecs.besonderheit, icon: '⭐' },
+                  ].map((spec, si) => (
+                    <div key={si} style={{
+                      display: 'flex', alignItems: 'center', gap: 10,
+                      padding: '10px 0',
+                      borderBottom: si < 13 ? `1px solid ${C.border}` : 'none',
+                    }}>
+                      <span style={{ fontSize: 16, width: 24, textAlign: 'center', flexShrink: 0 }}>
+                        {spec.icon}
+                      </span>
+                      <span style={{ fontSize: 12, color: C.textMuted, fontWeight: 600, minWidth: 90, flexShrink: 0 }}>
+                        {spec.label}
+                      </span>
+                      <span style={{ fontSize: 13, color: C.text, fontWeight: 500 }}>
+                        {spec.value}
+                      </span>
+                    </div>
+                  ))}
+
+                  <a
+                    href={`https://www.hymer.com/de/de/reisemobile`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                      padding: '12px 16px', borderRadius: 12,
+                      background: C.accentBg,
+                      color: C.accent, textDecoration: 'none',
+                      fontSize: 13, fontWeight: 600,
+                      marginTop: 16,
+                    }}
+                  >
+                    🌐 Mehr auf hymer.com
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Firebase Sync Status */}
+            <div style={{
+              textAlign: 'center', padding: '16px 0 8px',
+              fontSize: 11, color: C.textLight,
+            }}>
+              {firebaseReady ? '🟢 Echtzeit-Sync aktiv' : '💾 Lokaler Speicher (Firebase nicht konfiguriert)'}
+            </div>
           </div>
         )}
 
@@ -1508,43 +1765,73 @@ export default function App() {
           <div className="fade-up">
             <h3 style={{ ...baseStyles.sectionTitle, marginTop: 20 }}>Packliste</h3>
             <p style={{ fontSize: 13, color: C.textMuted, marginBottom: 20, lineHeight: 1.6 }}>
-              Film-Props, Deko & Styling für {trip.destination} mit dem {trip.vehicle}.
+              Alles für den Dreh: Kamera-Gear, Deko & Styling für {trip.destination}.
             </p>
 
-            {/* Progress */}
+            {/* Overall Progress */}
             <div style={baseStyles.card}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <p style={{ fontSize: 12, fontWeight: 600, color: C.textMuted, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   Eingepackt
                 </p>
                 <span style={{ fontSize: 22, fontWeight: 700, color: C.accent }}>
-                  {PACKLIST_ITEMS.length > 0 ? Math.round((packDone / PACKLIST_ITEMS.length) * 100) : 0}%
+                  {allPackItems.length > 0 ? Math.round((packDone / allPackItems.length) * 100) : 0}%
                 </span>
               </div>
-              <ProgressBar done={packDone} total={PACKLIST_ITEMS.length} />
+              <ProgressBar done={packDone} total={allPackItems.length} />
             </div>
 
-            {/* Filter Pills */}
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12, marginTop: 16 }}>
-              {PACK_CATEGORIES.map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setPackFilter(cat)}
-                  style={{
-                    ...baseStyles.pill,
-                    ...(packFilter === cat ? baseStyles.pillActive : {}),
-                    padding: '6px 14px',
-                    fontSize: 12,
-                  }}
-                >
-                  {cat}
-                </button>
+            {/* ── Kamera Essentials ── */}
+            <h4 style={{ fontSize: 16, fontWeight: 600, margin: '24px 0 8px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              🎥 Kamera Essentials
+              <span style={{ fontSize: 12, color: C.textMuted, fontWeight: 400 }}>(jeder Trip)</span>
+            </h4>
+            <div style={baseStyles.card}>
+              <ProgressBar
+                done={KAMERA_ESSENTIALS.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length}
+                total={KAMERA_ESSENTIALS.length}
+              />
+              {KAMERA_ESSENTIALS.map(item => (
+                <CheckItem
+                  key={item.id}
+                  checked={!!packlistChecked[`${trip.id}_${item.id}`]}
+                  text={`${item.emoji} ${item.text}`}
+                  onToggle={() => togglePackItem(item.id)}
+                />
               ))}
             </div>
 
-            {/* Items */}
+            {/* ── Trip-spezifische Deko ── */}
+            <h4 style={{ fontSize: 16, fontWeight: 600, margin: '24px 0 8px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              🎨 Deko & Props – {trip.destination}
+              <span style={{ fontSize: 12, color: C.textMuted, fontWeight: 400 }}>({tripDekoItems.length})</span>
+            </h4>
             <div style={baseStyles.card}>
-              {filteredPack.map(item => (
+              <ProgressBar
+                done={tripDekoItems.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length}
+                total={tripDekoItems.length}
+              />
+              {tripDekoItems.map(item => (
+                <CheckItem
+                  key={item.id}
+                  checked={!!packlistChecked[`${trip.id}_${item.id}`]}
+                  text={`${item.emoji} ${item.text}`}
+                  onToggle={() => togglePackItem(item.id)}
+                />
+              ))}
+            </div>
+
+            {/* ── Universelle Props & Styling ── */}
+            <h4 style={{ fontSize: 16, fontWeight: 600, margin: '24px 0 8px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              🧳 Universelle Props & Styling
+              <span style={{ fontSize: 12, color: C.textMuted, fontWeight: 400 }}>(jeder Trip)</span>
+            </h4>
+            <div style={baseStyles.card}>
+              <ProgressBar
+                done={UNIVERSAL_ITEMS.filter(p => packlistChecked[`${trip.id}_${p.id}`]).length}
+                total={UNIVERSAL_ITEMS.length}
+              />
+              {UNIVERSAL_ITEMS.map(item => (
                 <CheckItem
                   key={item.id}
                   checked={!!packlistChecked[`${trip.id}_${item.id}`]}
