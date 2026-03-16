@@ -123,7 +123,7 @@ const TRIPS = [
     km: '~3.500+ km',
     route: 'Ostfildern → Calais → Eurotunnel → Wales → Fishguard → Rosslare → Wild Atlantic Way',
     heroImg: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=800&q=80',
-    vehicleImg: 'https://www.hymer.com/hymer/website-assets/1.produktseiten/gt-s/new_pdp_2025/ambient-exterior/farbe1_weiss_weiss/gt-s_weiss_weiss_auswahl.webp',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/campervans/freisteller_campervans/image-thumb__103884__wls-teaser-large/hc25_gcs_xperience_freisteller.webp',
     mustSpots: [
       {
         name: 'Eurotunnel Calais → Folkestone',
@@ -233,7 +233,7 @@ const TRIPS = [
     km: '~900 km',
     route: 'Ostfildern → Zürich → Furkapass → Grimselpass → Zermatt → Sustenpass → Ostfildern',
     heroImg: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80',
-    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/campervans/freisteller_campervans/image-thumb__162189__wls-teaser-large/gcs-crosstrail_steingrau_freisteller.webp',
+    vehicleImg: 'https://www.hymer.com/hymer/website-assets/1.produktseiten/sondermodelle/grand_canyon_s_crosstrail/image-thumb__162671__wls-hymer-stage/gcs700_crosstrail_1920_800_hero_freisteller.webp',
     mustSpots: [
       {
         name: 'Zermatt / Matterhorn',
@@ -451,6 +451,241 @@ const TRIPS = [
     ],
   },
 ];
+
+/* ─────────────────────────────────────
+   MAP PIN DATA (parking & POI spots)
+───────────────────────────────────── */
+const MAP_DATA = {
+  'toskana-0': {
+    center: [43.72, 10.39], zoom: 11,
+    pins: [
+      { n: 'Area Sosta Camper Pisa', d: 'Offizieller WoMo-Stellplatz, 10 Min zum Turm', lat: 43.724, lon: 10.389, t: 'P' },
+      { n: 'Parking Via Pietrasantina', d: 'Großer Schotterparkplatz, easy für 7m+', lat: 43.728, lon: 10.384, t: 'P' },
+      { n: 'Tenuta San Rossore', d: 'Waldweg-Kulisse, morgens menschenleer', lat: 43.724, lon: 10.338, t: 'S' },
+      { n: 'Viale delle Cascine', d: 'Pinien-Allee, Driving Shots mit Baumtunnel', lat: 43.722, lon: 10.362, t: 'S' },
+      { n: 'Marina di Vecchiano', d: 'Strandparkplatz, Wohnmobil + Meer-Kombi', lat: 43.773, lon: 10.279, t: 'P' },
+      { n: 'Camping Torre Pendente', d: 'Direkter Turm-Blick, große Stellplätze', lat: 43.726, lon: 10.386, t: 'P' },
+      { n: 'SP24 Richtung Lucca', d: 'Olivenhaine, kaum Verkehr morgens', lat: 43.756, lon: 10.368, t: 'S' },
+      { n: 'Calci bei Pisa', d: 'Bergdorf mit Kloster, Panorama-Parkplatz', lat: 43.727, lon: 10.518, t: 'S' },
+      { n: 'Bocca d\'Arno', d: 'Flussmündung, Naturkulisse Sonnenuntergang', lat: 43.691, lon: 10.276, t: 'S' },
+      { n: 'Certosa di Pisa', d: 'Monumentaler Kloster-Hintergrund, P für große Fzg.', lat: 43.729, lon: 10.521, t: 'P' },
+    ],
+  },
+  'toskana-1': {
+    center: [43.15, 11.58], zoom: 11,
+    pins: [
+      { n: 'SP438 Abzweig Baccoleno', d: 'Schotterweg-Einfahrt, Platz zum Rangieren', lat: 43.193, lon: 11.555, t: 'P' },
+      { n: 'Asciano Ortsparkplatz', d: 'Sicher parken, 15 Min Drohne zum Spot', lat: 43.233, lon: 11.560, t: 'P' },
+      { n: 'Strada Provinciale Lauretana', d: 'Hügelstraße, epische Kurven für Fahraufnahmen', lat: 43.230, lon: 11.530, t: 'S' },
+      { n: 'Crete Senesi SP451', d: 'Weite Hügellandschaft, kein Zaun', lat: 43.210, lon: 11.500, t: 'S' },
+      { n: 'Monte Oliveto Maggiore', d: 'Kloster-Setting, große Stellfläche', lat: 43.174, lon: 11.545, t: 'P' },
+      { n: 'San Giovanni d\'Asso', d: 'Mittelalterliches Dorf, ruhiger Platz', lat: 43.162, lon: 11.588, t: 'P' },
+      { n: 'Bagno Vignoni', d: 'Heißes Quellbecken als Kulisse, P 200m', lat: 43.049, lon: 11.623, t: 'S' },
+      { n: 'Strada Bianca Pienza', d: 'Weiße Schotterstraße, Staubwolken-Shots', lat: 43.076, lon: 11.683, t: 'S' },
+      { n: 'Podere Belvedere', d: 'Instagram-Famous Haus mit Zypressen', lat: 43.079, lon: 11.663, t: 'S' },
+      { n: 'SP146 Pienza–Montepulciano', d: 'Panoramastraße, Parkbuchten', lat: 43.077, lon: 11.725, t: 'S' },
+    ],
+  },
+  'irland-0': {
+    center: [50.97, 1.50], zoom: 9,
+    pins: [
+      { n: 'Coquelles Terminal P1', d: 'Terminal-Parkplatz, große Flächen', lat: 50.929, lon: 1.821, t: 'P' },
+      { n: 'Espace Boulonnais', d: 'Stellfläche nahe Calais', lat: 50.912, lon: 1.818, t: 'P' },
+      { n: 'White Cliffs Dover', d: 'Visitor Car Park, Klippen-Panorama', lat: 51.133, lon: 1.350, t: 'S' },
+      { n: 'Cap Blanc-Nez', d: 'Aussichtspunkt, Parkplatz oben', lat: 50.932, lon: 1.716, t: 'S' },
+      { n: 'Folkestone Service', d: 'Service Station am UK-Ausgang', lat: 51.099, lon: 1.164, t: 'P' },
+      { n: 'Auchan Calais', d: 'Supermarkt-Parkplatz, Versorgung', lat: 50.947, lon: 1.864, t: 'P' },
+      { n: 'Zone Marcel Doret', d: 'Industriezone, freie Fläche', lat: 50.938, lon: 1.828, t: 'P' },
+      { n: 'Plage de Sangatte', d: 'Strand mit Tunnel-Blick', lat: 50.945, lon: 1.759, t: 'S' },
+      { n: 'Channel Tunnel UK', d: 'UK Arrival Area', lat: 51.096, lon: 1.138, t: 'P' },
+      { n: 'Samphire Hoe', d: 'Naturschutzgebiet am Tunnel-Ausgang', lat: 51.102, lon: 1.271, t: 'S' },
+    ],
+  },
+  'irland-1': {
+    center: [52.10, -5.60], zoom: 8,
+    pins: [
+      { n: 'Fishguard Harbour P', d: 'Car Park direkt am Terminal', lat: 51.993, lon: -4.976, t: 'P' },
+      { n: 'Goodwick Ocean Lab', d: 'Parking mit Meerblick', lat: 51.995, lon: -4.986, t: 'P' },
+      { n: 'Rosslare Europort P', d: 'Terminal Parking, großzügig', lat: 52.252, lon: -6.338, t: 'P' },
+      { n: 'Strumble Head', d: 'Leuchtturm-Aussicht, P oben', lat: 51.999, lon: -5.072, t: 'S' },
+      { n: 'Fishguard Lower Town', d: 'Historischer Hafen, Kulisse', lat: 51.999, lon: -4.976, t: 'S' },
+      { n: 'Newport Pembs. P', d: 'Küstenort, Parkplatz', lat: 52.019, lon: -4.843, t: 'P' },
+      { n: 'Abercastle Harbour', d: 'Kleiner Naturhafen', lat: 51.953, lon: -5.118, t: 'S' },
+      { n: 'Marine Walk Fishguard', d: 'Küstenpfad, fotogen', lat: 51.995, lon: -4.978, t: 'S' },
+      { n: 'Carregwastad Point', d: 'Historischer Landungspunkt', lat: 51.988, lon: -5.059, t: 'S' },
+      { n: 'Rosslare Strand Beach', d: 'Erster Strand in Irland', lat: 52.264, lon: -6.379, t: 'P' },
+    ],
+  },
+  'schweiz-0': {
+    center: [46.03, 7.76], zoom: 13,
+    pins: [
+      { n: 'Täsch Terminal Parkhaus', d: 'Matterhorn Terminal, Shuttle nach Zermatt', lat: 46.070, lon: 7.781, t: 'P' },
+      { n: 'Matterhorn Terminal P2', d: 'Überdacht, sicher, 24/7', lat: 46.068, lon: 7.780, t: 'P' },
+      { n: 'Riffelalp Station', d: 'Panorama-Aussicht Matterhorn', lat: 46.003, lon: 7.733, t: 'S' },
+      { n: 'Gornergrat', d: 'Höchste Bergbahn, 360° Alpenpanorama', lat: 45.983, lon: 7.785, t: 'S' },
+      { n: 'Stellplatz Täsch Vispa', d: 'Am Fluss, ruhig, günstig', lat: 46.073, lon: 7.778, t: 'P' },
+      { n: 'Kirchbrücke Zermatt', d: 'Ikonische Brücke mit Matterhorn-Blick', lat: 46.021, lon: 7.749, t: 'S' },
+      { n: 'Schluhmatte Zermatt', d: 'Freifläche im Dorf', lat: 46.020, lon: 7.741, t: 'P' },
+      { n: 'Sunnegga Talstation', d: 'Bergbahn, Matterhorn-Blick', lat: 46.020, lon: 7.752, t: 'S' },
+      { n: 'Furi Gondel', d: 'Zwischenstation, Wanderwege', lat: 46.002, lon: 7.741, t: 'S' },
+      { n: 'Trift Hängebrücke', d: 'Spektakuläre Brücke über Schlucht', lat: 45.998, lon: 7.738, t: 'S' },
+    ],
+  },
+  'schweiz-1': {
+    center: [46.62, 8.40], zoom: 11,
+    pins: [
+      { n: 'Furkapass Passhöhe', d: '2.436m, großer Schotterplatz oben', lat: 46.573, lon: 8.415, t: 'P' },
+      { n: 'Hotel Belvédère', d: 'Rhonegletscher-Blick, P an der Straße', lat: 46.583, lon: 8.360, t: 'P' },
+      { n: 'James-Bond-Straße', d: 'Goldfinger-Serpentinen, Drohne Pflicht', lat: 46.580, lon: 8.390, t: 'S' },
+      { n: 'Grimsel Passhöhe', d: 'Stausee, WoMo-Parkplatz am See', lat: 46.572, lon: 8.333, t: 'P' },
+      { n: 'Gelmerbahn Talstation', d: 'Steilste Standseilbahn Europas', lat: 46.606, lon: 8.350, t: 'S' },
+      { n: 'Sustenpass Parkplatz', d: 'Passhöhe mit Bergpanorama', lat: 46.729, lon: 8.448, t: 'P' },
+      { n: 'Steingletscher Hotel', d: 'Gletscher-Blick, großer P', lat: 46.734, lon: 8.425, t: 'P' },
+      { n: 'Räterichsbodensee', d: 'Türkiser Bergsee, fotogen', lat: 46.599, lon: 8.341, t: 'S' },
+      { n: 'Furka Dampfbahn Realp', d: 'Historische Dampflok, nostalgisch', lat: 46.599, lon: 8.506, t: 'S' },
+      { n: 'Totensee Grimsel', d: 'Bergsee an der Passhöhe', lat: 46.570, lon: 8.340, t: 'S' },
+    ],
+  },
+  'provence-0': {
+    center: [43.84, 5.98], zoom: 10,
+    pins: [
+      { n: 'D6 Valensole', d: 'Lavendelfeld-Straße, Parkbuchten am Feld', lat: 43.840, lon: 5.960, t: 'P' },
+      { n: 'Puimoisson', d: 'Weniger touristisch, riesige Felder', lat: 43.875, lon: 6.085, t: 'S' },
+      { n: 'Aire Camping-Cars Valensole', d: 'Offizieller WoMo-Platz im Ort', lat: 43.837, lon: 5.983, t: 'P' },
+      { n: 'Moustiers-Sainte-Marie', d: 'Schönstes Dorf, P am Ortsrand', lat: 43.846, lon: 6.222, t: 'S' },
+      { n: 'Lac de Sainte-Croix', d: 'Türkiser See, Strandparkplatz', lat: 43.770, lon: 6.175, t: 'P' },
+      { n: 'Gorges du Verdon', d: 'Schlucht-Panorama, Aussichtspunkt', lat: 43.755, lon: 6.246, t: 'S' },
+      { n: 'Route de Manosque', d: 'Felder beidseitig der Straße', lat: 43.834, lon: 5.960, t: 'S' },
+      { n: 'Riez Parking', d: 'Historischer Ort, Parkplatz Allées', lat: 43.818, lon: 6.092, t: 'P' },
+      { n: 'Plateau de Valensole D56', d: 'Weite Lavendelfelder, Panorama', lat: 43.850, lon: 5.930, t: 'S' },
+      { n: 'Manosque Altstadt', d: 'L\'Occitane Heimat, Marktplatz', lat: 43.830, lon: 5.785, t: 'S' },
+    ],
+  },
+  'provence-1': {
+    center: [43.38, -2.40], zoom: 9,
+    pins: [
+      { n: 'San Juan de Gaztelugatxe', d: 'Game-of-Thrones-Insel, WoMo P2', lat: 43.445, lon: -2.783, t: 'P' },
+      { n: 'Playa de Laga', d: 'Surfstrand, großer Schotterparkplatz', lat: 43.406, lon: -2.663, t: 'P' },
+      { n: 'Mundaka Hafen', d: 'Berühmte Linkswelle, P am Kai', lat: 43.403, lon: -2.698, t: 'S' },
+      { n: 'Getaria Hafen', d: 'Fischerdorf, Pintxos, Hafen-P', lat: 43.303, lon: -2.203, t: 'P' },
+      { n: 'Flysch Zumaia', d: 'Dramatische Felsschichten, P am Strand', lat: 43.295, lon: -2.254, t: 'S' },
+      { n: 'San Sebastián Strand', d: 'Playa de la Concha, legendär', lat: 43.321, lon: -1.984, t: 'S' },
+      { n: 'Monte Igueldo', d: 'Panoramablick, Parkplatz oben', lat: 43.320, lon: -1.998, t: 'P' },
+      { n: 'Bermeo Alter Hafen', d: 'Buntes Fischerdorf, fotogen', lat: 43.422, lon: -2.723, t: 'S' },
+      { n: 'Sopelana Surf Beach', d: 'Klippenstrand, großer P', lat: 43.382, lon: -2.988, t: 'P' },
+      { n: 'Hondarribia', d: 'Altstadt an der Grenze, charmant', lat: 43.370, lon: -1.794, t: 'S' },
+    ],
+  },
+  'provence-2': {
+    center: [37.09, -8.50], zoom: 10,
+    pins: [
+      { n: 'Praia da Marinha', d: 'Ikonische Klippen, großer Erdparkplatz', lat: 37.090, lon: -8.411, t: 'P' },
+      { n: 'Ponta da Piedade', d: 'Felsformationen Lagos, WoMo-P 300m', lat: 37.079, lon: -8.668, t: 'P' },
+      { n: 'Praia do Camilo', d: 'Treppen zum Strand, P oben', lat: 37.081, lon: -8.670, t: 'P' },
+      { n: 'Cabo de São Vicente', d: 'Westlichster Punkt Europas, Leuchtturm', lat: 37.023, lon: -8.999, t: 'S' },
+      { n: 'Praia da Falésia', d: 'Endlose Klippen, P oben am Rand', lat: 37.082, lon: -8.152, t: 'P' },
+      { n: 'Benagil Sea Cave', d: 'Berühmte Höhle, Zugang per Boot/Kajak', lat: 37.088, lon: -8.427, t: 'S' },
+      { n: 'Algar Seco Carvoeiro', d: 'Felsformation, Boardwalk', lat: 37.094, lon: -8.453, t: 'S' },
+      { n: 'Ria Formosa Faro', d: 'Naturpark, Lagunenlandschaft', lat: 36.980, lon: -7.935, t: 'S' },
+      { n: 'Sagres Fortaleza', d: 'Festung am Klippenrand, großer P', lat: 37.001, lon: -8.948, t: 'P' },
+      { n: 'Silves Burg', d: 'Maurische Burg, Parkplatz unten', lat: 37.189, lon: -8.439, t: 'S' },
+    ],
+  },
+};
+
+/* ─────────────────────────────────────
+   SPOT MAP COMPONENT (Leaflet)
+───────────────────────────────────── */
+function SpotMap({ tripId, spotIndex }) {
+  const mapRef = useRef(null);
+  const containerRef = useRef(null);
+  const data = MAP_DATA[`${tripId}-${spotIndex}`];
+
+  useEffect(() => {
+    if (!data || !containerRef.current || mapRef.current) return;
+    if (typeof window === 'undefined' || !window.L) return;
+
+    const L = window.L;
+    const map = L.map(containerRef.current, {
+      center: data.center,
+      zoom: data.zoom,
+      zoomControl: false,
+      attributionControl: false,
+    });
+    L.control.zoom({ position: 'topright' }).addTo(map);
+    L.control.attribution({ position: 'bottomright', prefix: false }).addTo(map);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OSM',
+      maxZoom: 18,
+    }).addTo(map);
+
+    const parkingIcon = L.divIcon({
+      className: '',
+      html: '<div style="width:28px;height:28px;border-radius:50%;background:#A0845C;border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">🅿️</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+    });
+
+    const spotIcon = L.divIcon({
+      className: '',
+      html: '<div style="width:28px;height:28px;border-radius:50%;background:#E8734A;border:2.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 6px rgba(0,0,0,0.3);">📍</div>',
+      iconSize: [28, 28],
+      iconAnchor: [14, 14],
+    });
+
+    data.pins.forEach((pin) => {
+      const icon = pin.t === 'P' ? parkingIcon : spotIcon;
+      L.marker([pin.lat, pin.lon], { icon })
+        .addTo(map)
+        .bindPopup(
+          `<div style="font-family:'DM Sans',sans-serif;min-width:160px;">` +
+          `<strong style="font-size:13px;">${pin.t === 'P' ? '🅿️' : '📍'} ${pin.n}</strong>` +
+          `<br/><span style="font-size:12px;color:#666;">${pin.d}</span>` +
+          `<br/><a href="https://www.google.com/maps/search/?api=1&query=${pin.lat},${pin.lon}" target="_blank" rel="noopener" style="font-size:11px;color:#A0845C;font-weight:600;text-decoration:none;">→ Google Maps</a>` +
+          `</div>`,
+          { closeButton: false, maxWidth: 220 }
+        );
+    });
+
+    mapRef.current = map;
+
+    // Fix tile loading after reveal
+    setTimeout(() => map.invalidateSize(), 200);
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, [data]);
+
+  if (!data) return null;
+
+  return (
+    <div style={{ marginTop: 12 }}>
+      <div style={{
+        display: 'flex', gap: 12, marginBottom: 8, flexWrap: 'wrap',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#A0845C' }}>
+          <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#A0845C', display: 'inline-block', border: '1.5px solid #fff', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} /> Parkplatz
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, color: '#E8734A' }}>
+          <span style={{ width: 14, height: 14, borderRadius: '50%', background: '#E8734A', display: 'inline-block', border: '1.5px solid #fff', boxShadow: '0 1px 3px rgba(0,0,0,0.2)' }} /> Shot-Spot / POI
+        </div>
+      </div>
+      <div
+        ref={containerRef}
+        style={{
+          width: '100%',
+          height: 280,
+          borderRadius: 16,
+          overflow: 'hidden',
+          border: '1px solid rgba(160,132,92,0.2)',
+        }}
+      />
+    </div>
+  );
+}
 
 /* ─────────────────────────────────────
    BASIC SHOTS (same for every trip)
@@ -1294,30 +1529,15 @@ export default function App() {
                         📍 In Google Maps öffnen
                       </a>
 
-                      {/* Location Tips */}
+                      {/* Interactive Map with Parking & POI Pins */}
                       <p style={{
                         fontSize: 11, fontWeight: 600, color: C.accent,
                         textTransform: 'uppercase', letterSpacing: '0.08em',
-                        marginBottom: 10,
+                        marginBottom: 4,
                       }}>
-                        🚐 Top Spots für große Fahrzeuge
+                        🗺️ Parkplätze & Shot-Spots
                       </p>
-                      {spot.locationTips.map((tip, ti) => (
-                        <div key={ti} style={{
-                          display: 'flex', alignItems: 'flex-start', gap: 8,
-                          padding: '8px 0',
-                          borderBottom: ti < spot.locationTips.length - 1 ? `1px solid ${C.border}` : 'none',
-                        }}>
-                          <span style={{
-                            fontSize: 11, fontWeight: 700, color: C.accent,
-                            background: C.accentBg, borderRadius: 6,
-                            padding: '2px 6px', flexShrink: 0, marginTop: 1,
-                          }}>
-                            {ti + 1}
-                          </span>
-                          <p style={{ fontSize: 13, color: C.text, lineHeight: 1.5 }}>{tip}</p>
-                        </div>
-                      ))}
+                      <SpotMap tripId={trip.id} spotIndex={i} />
                     </div>
                   )}
                 </div>
@@ -1330,10 +1550,12 @@ export default function App() {
               <div key={i} style={baseStyles.card} className="slide-in">
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{
-                    width: 44, height: 44, borderRadius: 14,
+                    minWidth: 44, height: 44, borderRadius: 14,
+                    padding: '0 10px',
                     background: `linear-gradient(135deg, ${C.accent}, ${C.accentLight})`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: C.white, fontWeight: 700, fontSize: 14, flexShrink: 0,
+                    color: C.white, fontWeight: 700, fontSize: String(day.day).length > 2 ? 11 : 14, flexShrink: 0,
+                    whiteSpace: 'nowrap',
                   }}>
                     T{day.day}
                   </div>
