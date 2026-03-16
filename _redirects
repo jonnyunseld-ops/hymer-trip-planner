@@ -1,0 +1,2 @@
+# Proxy Hymer images to avoid CORS issues for canvas processing
+/proxy/hymer/*  https://www.hymer.com/:splat  200
