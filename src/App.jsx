@@ -123,7 +123,7 @@ const TRIPS = [
     km: '~3.500+ km',
     route: 'Ostfildern → Calais → Eurotunnel → Wales → Fishguard → Rosslare → Wild Atlantic Way',
     heroImg: 'https://images.unsplash.com/photo-1590089415225-401ed6f9db8e?w=800&q=80',
-    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/campervans/freisteller_campervans/image-thumb__103884__wls-teaser-large/hc25_gcs_xperience_freisteller.webp',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/motorhomes/freisteller_motorcaravans/image-thumb__159322__wls-teaser-large/hy25_gts_685_steingrau.webp',
     mustSpots: [
       {
         name: 'Eurotunnel Calais → Folkestone',
@@ -233,7 +233,7 @@ const TRIPS = [
     km: '~900 km',
     route: 'Ostfildern → Zürich → Furkapass → Grimselpass → Zermatt → Sustenpass → Ostfildern',
     heroImg: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=800&q=80',
-    vehicleImg: 'https://www.hymer.com/hymer/website-assets/1.produktseiten/sondermodelle/grand_canyon_s_crosstrail/image-thumb__162671__wls-hymer-stage/gcs700_crosstrail_1920_800_hero_freisteller.webp',
+    vehicleImg: 'https://www.hymer.com/hymer/produktbilder/2020_01/produktbilder/campervans/freisteller_campervans/image-thumb__162189__wls-teaser-large/gcs-crosstrail_steingrau_freisteller.png',
     mustSpots: [
       {
         name: 'Zermatt / Matterhorn',
